@@ -1,0 +1,23 @@
+# Inference-only dependencies for Python 3.14 + pip (no conda).
+# Install PyTorch first with the CUDA wheel matching the GPU driver:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# then:
+#   pip install -r requirements-py314.txt
+transformers
+huggingface_hub
+numpy
+scipy
+pandas
+scikit-learn
+matplotlib
+trimesh
+plyfile
+joblib
+loguru
+rich
+prettytable
+pyyaml
+pythonocc-core-wheels==7.9.3.post1
+# Translation stage (MarianTokenizer of the TR->EN model)
+sentencepiece
+sacremoses

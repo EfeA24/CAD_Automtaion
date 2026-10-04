@@ -9,6 +9,10 @@ env/
 # Upstream Text2CAD git history (kept locally for diffing against SadilKhan/Text2CAD)
 Text2CAD/.upstream-git/
 
+# Downloaded model files (Hugging Face cache, Text2CAD checkpoint)
+Text2CAD/hf_cache/
+Text2CAD/checkpoints/
+
 # Datasets (too large for GitHub)
 Translarion/Datasets/
 Text2CAD/data/
