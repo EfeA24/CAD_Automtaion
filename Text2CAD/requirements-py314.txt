@@ -21,3 +21,5 @@ pythonocc-core-wheels==7.9.3.post1
 # Translation stage (MarianTokenizer of the TR->EN model)
 sentencepiece
 sacremoses
+# Tests (run from the repo root: python -m pytest)
+pytest
