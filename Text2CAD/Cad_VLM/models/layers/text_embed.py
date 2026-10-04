@@ -39,7 +39,7 @@ class TextEmbedder(nn.Module):
                     max_length=self.max_seq_len,
                     truncation=True,
                     padding=True,
-                ).to("cuda")
+                ).to(self.model.device)
                 all_output = self.model(**input_ids)
 
                 embedding = all_output[0]

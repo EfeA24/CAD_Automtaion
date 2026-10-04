@@ -22,6 +22,7 @@ import yaml
 import warnings
 import logging.config
 import pickle
+import traceback
 
 warnings.filterwarnings("ignore")
 logging.config.dictConfig(
@@ -68,7 +69,7 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     t2clogger.info(
         "Current Device {}",
-        torch.cuda.get_device_properties(device),
+        torch.cuda.get_device_properties(device) if device == "cuda" else "cpu",
     )
 
     # -------------------------------- Load Model -------------------------------- #
@@ -84,7 +85,8 @@ def main():
 
     # --------------------------- Prepare Log Directory -------------------------- #
     now = datetime.datetime.now()
-    time_str = now.strftime("%H:%M")
+    # ":" is not allowed in Windows directory names
+    time_str = now.strftime("%H-%M")
     date_str = datetime.date.today()
     log_dir = os.path.join(
         config["test"]["log_dir"],
@@ -143,7 +145,7 @@ def test_model(
 
         print(f"Using saved checkpoint at {checkpoint_file}")
         # checkpoint_file_name = checkpoint_file.split("/")[-1]
-        checkpoint = torch.load(checkpoint_file, map_location=device)
+        checkpoint = torch.load(checkpoint_file, map_location=device, weights_only=False)
         pretrained_dict = {}
         for key, value in checkpoint["model_state_dict"].items():
             if key.split(".")[0] == "module":
@@ -216,6 +218,7 @@ def test_model(
 
                 except Exception as e:
                     print(f"Invalid Model Generated for example {index}")
+                    traceback.print_exc()
                 # Save the model prediction output
                 test_acc_uid[index] = {}
                 test_acc_uid[index]["pred_cad_vec"] = (
