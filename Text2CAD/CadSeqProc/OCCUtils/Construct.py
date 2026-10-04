@@ -838,9 +838,9 @@ def rotate(brep, axe, degree, copy=False):
 
 
 def face_normal(face):
-    from OCC.Core.BRepTools import breptools_UVBounds
+    from OCC.Core.BRepTools import breptools
 
-    umin, umax, vmin, vmax = breptools_UVBounds(face)
+    umin, umax, vmin, vmax = breptools.UVBounds(face)
     surf = BRep_Tool().Surface(face)
     props = GeomLProp_SLProps(
         surf, (umin + umax) / 2.0, (vmin + vmax) / 2.0, 1, TOLERANCE

@@ -47,7 +47,7 @@ from OCC.Core.AIS import AIS_Shape
 from OCC.Core.Quantity import Quantity_Color, Quantity_TOC_RGB
 import torch.nn.functional as F
 # from .decorator import measure_performance
-from OCC.Core.BRepTools import breptools_Write
+from OCC.Core.BRepTools import breptools
 
 
 
@@ -188,11 +188,11 @@ def save_ais_shape_as_brep(ais_shape, filename):
     brep = brep_builder.Shape()
 
     # Save the BREP file
-    breptools_Write(brep, filename)
+    breptools.Write(brep, filename)
 
 
 def save_ais_shape_as_step(ais_shape, filename):
-    breptools_Write(ais_shape.Shape(), filename)
+    breptools.Write(ais_shape.Shape(), filename)
 
 
 def create_colored_wire(edges, apply_colors=True):
