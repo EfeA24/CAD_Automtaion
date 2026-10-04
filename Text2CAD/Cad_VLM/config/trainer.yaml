@@ -1,0 +1,88 @@
+ # ---------------------------------------------------------------------------- #
+ #                      Config for Text2CAD Model Training                      #
+ # ---------------------------------------------------------------------------- #
+ 
+ 
+ 
+ # ---------------------- Configuration for text encoder ---------------------- #
+text_encoder:
+  # ----------------- Configuration for the Base Text Embedder ----------------- #
+  text_embedder:
+    # Name of the text encoder model
+    model_name: "bert_large_uncased"
+    # Maximum Text Sequence Length
+    max_seq_len: 512
+    # Cache Directory
+    cache_dir: "YOUR DIR"
+
+  # ----------------- Configuration for the Adaptive Layer ----------------- #
+  adaptive_layer:
+    # Input dimension of the text encoder (1024 for bert, else 4096)
+    in_dim: 1024 
+    # Output dimension of the text encoder (1024 for bert, else 4096)
+    out_dim: 1024
+    # Number of attention heads in the text encoder
+    num_heads: 8
+    # Dropout probability in the text encoder
+    dropout: 0.1
+
+# ----------------------- Configuration for CAD Decoder ---------------------- #
+cad_decoder:
+  # Dimension of the latent variable z in the CAD decoder (1024 for bert, else 4096)
+  tdim: 1024
+  # Dimension of the state variable s in the CAD decoder
+  cdim: 256
+  # Number of transformer layers in the CAD decoder
+  num_layers: 8
+  # Number of attention heads in each layer of the CAD decoder
+  num_heads: 8
+  # Dropout probability in the CAD decoder
+  dropout: 0.1
+  # Starting level for channel attention in the CAD decoder
+  ca_level_start: 2
+
+# --------------- Configuration related to training dataloader --------------- #
+train_data:
+  # Root directory of the training data
+  cad_seq_dir: "YOUR DIR"
+  # Path to the CSV file containing the text prompts
+  prompt_path: "YOUR PATH"
+  # JSON file containing information about train, test, and validation splits
+  split_filepath: "YOUR PATH"
+  # Maximum sequence length for input data
+  max_seq_len: 512
+
+# --------------------- Configuration related to training -------------------- #
+train:
+  # Learning rate for training
+  lr: 0.0001
+  # Batch size for training
+  batch_size: 16 # for 80 GB gpu
+  # Number of epochs for training
+  num_epochs: 150
+  # Number of workers for the DataLoader during training
+  num_workers: 30
+  # Prefetch factor for the DataLoader during training
+  prefetch_factor: 10
+  # Directory for logging training information
+  log_dir: "YOUR DIR"
+  # Path to saved model checkpoint for Resuming Training (optional)
+  checkpoint_path:  # Set to None if no checkpoint is available
+  # Checkpoint interval
+  checkpoint_interval: 10
+  # Curriculum learning epoch (set to 0 for no curriculum learning)
+  curriculum_learning_epoch: 0
+  
+
+# ------------------------- Validation configuration ------------------------- #
+val:
+  # Nucleus sampling probability for validation (set to 0 for greedy decoding)
+  nucleus_prob: 0
+  val_batch: 5
+
+# ------------------------------ Debug mode flag ----------------------------- #
+# In debug mode, the model weights are not saved
+debug: False
+
+# --------------- Additional information (leave empty for now) --------------- #
+info: "Experiment 1: Base Model Training"

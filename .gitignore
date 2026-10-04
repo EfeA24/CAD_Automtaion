@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Upstream Text2CAD git history (kept locally for diffing against SadilKhan/Text2CAD)
+Text2CAD/.upstream-git/
+
+# Datasets (too large for GitHub)
+Translarion/Datasets/
+Text2CAD/data/
+Text2CAD/dataset/
+Text2CAD/datasets/
+
+# Model weights and training checkpoints
+Translarion/Models/TurkishToEnglishModel/
+**/checkpoint-*/
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+*.pkl
+*.h5
+*.onnx
+
+# Training / inference outputs
+Text2CAD/logs/
+Text2CAD/output/
+Text2CAD/results/
+output/
+runs/
+*.stp
+*.step
+*.stl
+*.ply
+*.log

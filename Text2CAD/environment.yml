@@ -1,0 +1,39 @@
+name: text2cad
+channels:
+    - default
+    - conda-forge
+    - conda-forge/label/cf202003  
+    - conda-forge/label/gcc7
+    - pytorch
+    - nvidia
+
+dependencies:
+    - python=3.9
+    - numpy
+    - pytorch=2.2.1
+    - torchvision=0.17.1
+    - pythonocc-core=7.7.2
+    - cuda
+    - pip:
+        - tqdm
+        - prettytable
+        - torchinfo==1.8.0
+        - plyfile==0.9
+        - trimesh==4.1.8
+        - tensorboard
+        - pyvista
+        - rich==13.7.1
+        - CythonGSL
+        - loguru
+        - torchdata==0.7.1
+        - litdata
+        - transformers
+        - nltk
+        - ipykernel
+        - ipywidgets
+        - rich
+        - pillow
+        - accelerate
+        - python-dotenv
+        - gradio
+        - open3d
