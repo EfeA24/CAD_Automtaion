@@ -49,6 +49,13 @@ class TextToCAD:
         cad_config = dict(self.config["cad_decoder"])
         cad_config["cad_seq_len"] = MAX_CAD_SEQUENCE_LENGTH
         self.model = Text2CAD(text_config=self.config["text_encoder"], cad_config=cad_config).to(self.device)
+        # Some Text2CAD layers store their device as a plain attribute picked at
+        # construction time (cuda if available), which .to() does not update.
+        for module in self.model.modules():
+            if type(module).__module__.startswith("Cad_VLM.") and isinstance(
+                getattr(module, "device", None), torch.device
+            ):
+                module.device = torch.device(self.device)
         self._load_checkpoint(Path(checkpoint))
         self.model.eval()
 
