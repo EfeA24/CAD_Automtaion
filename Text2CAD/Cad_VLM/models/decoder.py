@@ -2,6 +2,7 @@ import torch
 import copy
 import torch.nn as nn
 import os, sys
+from typing import Optional
 
 sys.path.append("/".join(os.path.abspath(__file__).split("/")[:-3]))
 from CadSeqProc.utility.macro import *
@@ -110,7 +111,7 @@ class CADDecoder(nn.Module):
     def forward(
         self,
         vec_dict: dict,
-        ZE: Optional[torch.tensor],
+        ZE: Optional[torch.Tensor],
         mask_cad_dict: dict,
         cross_attn_mask_dict: dict = {"attn_mask": None, "key_padding_mask": None},
         metadata: bool = False,

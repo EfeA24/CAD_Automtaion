@@ -5,6 +5,29 @@ __pycache__/
 venv/
 env/
 .ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Secrets
+.env
+.env.*
+
+# IDE (user-specific)
+.idea/workspace.xml
+.idea/shelf/
+.idea/dataSources*
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # Upstream Text2CAD git history (kept locally for diffing against SadilKhan/Text2CAD)
 Text2CAD/.upstream-git/

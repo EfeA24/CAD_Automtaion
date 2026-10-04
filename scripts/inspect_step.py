@@ -1,7 +1,3 @@
-"""Print basic geometry facts about a STEP file and render a PNG preview.
-
-    Text2CAD\\.venv\\Scripts\\python scripts\\inspect_step.py output\\part.step output\\part.png
-"""
 
 import sys
 from collections import Counter
